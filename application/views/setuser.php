@@ -42,8 +42,8 @@
                 </a>
                 <a href="<?php echo base_url('dashboard'); ?>" class="logo">
                     <div class="logo-lg">
-                        <span class="light-logo"><img src="<?php echo base_url('template/images/logopako1.png'); ?>" alt="logo"></span>
-                        <span class="dark-logo"><img src="<?php echo base_url('template/images/logopako1.png'); ?>" alt="logo"></span>
+                        <span class="light-logo"><img src="<?php echo base_url('template/images/logofix.png'); ?>" alt="logo"></span>
+                        <span class="dark-logo"><img src="<?php echo base_url('template/images/logofix.png'); ?>" alt="logo"></span>
                     </div>
                 </a>
             </div>
@@ -218,8 +218,8 @@
                             <li class="treeview">
                                 <a href="#"><i class="icon-Chart-pie"></i> <span>Charts</span><i class="fa fa-angle-right pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="<?php echo base_url(); ?>"><i class="icon-Commit"></i> UMH DL</a></li>
-                                    <li><a href="<?php echo base_url('dashboardidl'); ?>"><i class="icon-Commit"></i> UMH IDL</a></li>
+                                    <li><a href="<?php echo base_url('dashboard'); ?>"><i class="icon-Commit"></i>Halaman Transaksi </a></li>
+                                    <li><a href="<?php echo base_url('laporan'); ?>"><i class="icon-Commit"></i>Halaman Laporan </a></li>
                                 </ul>
                             </li>
                             <li class="header">LOGIN ADMIN</li>
