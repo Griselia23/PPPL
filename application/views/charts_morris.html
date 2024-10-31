@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../images/favicon.ico">
+
+    <title>EduAdmin - Dashboard  Morris Charts </title>
+  
+	<!-- Vendors Style-->
+	<link rel="stylesheet" href="css/vendors_css.css">
+	  
+	<!-- Style-->  
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/skin_color.css">
+	
+</head>
+<body class="hold-transition light-skin sidebar-mini theme-primary fixed">
+	
+<div class="wrapper">
+	<div id="loader"></div>
+
+  <header class="main-header">
+	<div class="d-flex align-items-center logo-box justify-content-start">
+		<a href="#" class="waves-effect waves-light nav-link d-none d-md-inline-block mx-10 push-btn bg-transparent text-white" data-toggle="push-menu" role="button">
+			<span class="icon-Align-left"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+		</a>	
+		<!-- Logo -->
+		<a href="index.html" class="logo">
+		  <!-- logo-->
+		  <div class="logo-lg">
+			  <span class="light-logo"><img src="../images/logo-light-text.png" alt="logo"></span>
+			  <span class="dark-logo"><img src="../images/logo-dark-text.png" alt="logo"></span>
+		  </div>
+		</a>	
+	</div>  
+  </header>
+  
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar-->
+    <section class="sidebar position-relative">	
+	  	<div class="multinav">
+		  <div class="multinav-scroll" style="height: 100%;">	
+			  <!-- sidebar menu-->
+			  <ul class="sidebar-menu" data-widget="tree">	
+				<li class="header">Tipe Pekerja</li>
+				<li class="treeview">
+				  
+				<li class="treeview">
+				  <a href="#">
+					<i class="icon-Chart-pie"><span class="path1"></span><span class="path2"></span></i>
+					<span>Charts</span>
+					<span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+				  </a>
+				  <ul class="treeview-menu">
+					
+					<li><a href="charts_morris.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>UMH DL</a></li>
+					<li><a href="charts_morris.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>UMH IDL</a></li>
+					
+				  </ul>
+				
+				<li class="header">LOGIN ADMIN </li>
+				<li class="treeview">
+				  <a href="#">
+					<i class="icon-Chat-locked"><span class="path1"></span><span class="path2"></span></i>
+					<span>Authentication</span>
+					<span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+				  </a>
+				  <ul class="treeview-menu">
+					<li><a href="auth_login.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Login</a></li>
+					<li><a href="auth_register.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Register</a></li>	
+		  </div>
+		</div>
+    </section>
+	<div class="sidebar-footer">
+		<a href="javascript:void(0)" class="link" data-bs-toggle="tooltip" title=""><span class=""></span></a>
+		<a href="" class="link" data-bs-toggle="tooltip" title=""><span class=""></span></a>
+		<a href="javascript:void(0)" class="link" data-bs-toggle="tooltip" title="	"><span class=""><span class="path1"></span><span class="path2"></span></span></a>
+	</div>
+  </aside>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+	  <div class="container-full">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="me-auto">
+					<h3 class="page-title">UMH chart</h3>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item" aria-current="page">Chart</li>
+								<li class="breadcrumb-item active" aria-current="page">Morris chart</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- Main content -->
+		<section class="content">			
+		    <div class="row">
+
+				<div class="col-xl-4 col-12">
+					<div class="box">
+						<div class="box-body">
+							<h4 class="box-title">Bar Chart</h4>
+							<div id="bar-chart"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-12">
+					<div class="box">
+						<div class="box-body">
+							<h4 class="box-title">Bar Chart</h4>
+							<div id="bar-chart1"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-12">
+					<div class="box">
+						<div class="box-body">
+							<h4 class="box-title">Bar Chart</h4>
+							<div id="bar-chart2"></div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</section>
+		<!-- /.content -->
+	  </div>
+  </div>
+  <!-- /.content-wrapper -->
+  
+   <footer class="main-footer">
+    
+	  &copy; 2021 <a href="https://www.multipurposethemes.com/">Multipurpose Themes</a>. All Rights Reserved.
+  </footer>
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar">
+	  
+	<div class="rpanel-title"><span class="pull-right btn btn-circle btn-danger"><i class="ion ion-close text-white" data-toggle="control-sidebar"></i></span> </div>  <!-- Create the tabs -->
+    <ul class="nav nav-tabs control-sidebar-tabs">
+      <li class="nav-item"><a href="#control-sidebar-home-tab" data-bs-toggle="tab" class="active"><i class="mdi mdi-message-text"></i></a></li>
+      <li class="nav-item"><a href="#control-sidebar-settings-tab" data-bs-toggle="tab"><i class="mdi mdi-playlist-check"></i></a></li>
+    </ul>
+
+	
+	
+	
+	<!-- Page Content overlay -->
+	
+	
+	<!-- Vendor JS -->
+	<script src="js/vendors.min.js"></script>
+	<script src="js/pages/chat-popup.js"></script>
+    <script src="../assets/icons/feather-icons/feather.min.js"></script>	<script src="../assets/vendor_components/raphael/raphael.min.js"></script>
+	<script src="../assets/vendor_components/morris.js/morris.min.js"></script>
+
+	<!-- EduAdmin App -->
+	<script src="js/template.js"></script>
+	
+	<script src="js/pages/widget-morris-charts.js"></script>
+
+
+</body>
+</html>
