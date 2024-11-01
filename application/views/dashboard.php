@@ -139,72 +139,79 @@
 
         <!-- Main Content -->
         <div class="content-wrapper">
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <!-- Penjualan Form -->
-                        <div class="col-md-6">
-                            <h2>Form Penjualan</h2>
-                            <form action="<?php echo base_url('dashboard/submit_penjualan'); ?>" method="post">
-                                <div class="form-group">
-                                    <label for="user">User:</label>
-                                    <input type="text" name="user" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="kode_barang">Kode Barang:</label>
-                                    <input type="text" name="kode_barang" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="barang">Barang:</label>
-                                    <input type="text" name="barang" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="jumlah">Jumlah:</label>
-                                    <input type="number" name="jumlah" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="harga">Harga:</label>
-                                    <input type="number" name="harga" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="tanggal">Tanggal:</label>
-                                    <input type="date" name="tanggal" class="form-control" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit Penjualan</button>
-                            </form>
-                        </div>
-
-                        <!-- Pembelian Form -->
-                        <div class="col-md-6">
-                            <h2>Form Pembelian</h2>
-                            <form action="<?php echo base_url('dashboard/submit_pembelian'); ?>" method="post">
-                                <div class="form-group">
-                                    <label for="user">User:</label>
-                                    <input type="text" name="user" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="barang">Barang:</label>
-                                    <input type="text" name="barang" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="jumlah">Jumlah:</label>
-                                    <input type="number" name="jumlah" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="harga">Harga:</label>
-                                    <input type="number" name="harga" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="tanggal">Tanggal:</label>
-                                    <input type="date" name="tanggal" class="form-control" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit Pembelian</button>
-                            </form>
-                        </div>
-                    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Penjualan Form -->
+                <div class="col-md-6">
+                    <h2>Form Penjualan</h2>
+                    <form action="<?php echo base_url('dashboard/submit_penjualan'); ?>" method="post">
+                        <fieldset class="border p-3">
+                            <legend class="w-auto">Detail Penjualan</legend>
+                            <div class="form-group">
+                                <label for="user">User:</label>
+                                <input type="text" name="user" class="form-control form-control-lg" placeholder="Masukkan Nama User" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="kode_barang">Kode Barang:</label>
+                                <input type="text" name="kode_barang" class="form-control form-control-lg" placeholder="Masukkan Kode Barang" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="barang">Barang:</label>
+                                <input type="text" name="barang" class="form-control form-control-lg" placeholder="Masukkan Nama Barang" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="jumlah">Jumlah:</label>
+                                <input type="number" name="jumlah" class="form-control form-control-lg" placeholder="Masukkan Jumlah" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="harga">Harga:</label>
+                                <input type="number" name="harga" class="form-control form-control-lg" placeholder="Masukkan Harga" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tanggal">Tanggal:</label>
+                                <input type="date" name="tanggal" class="form-control form-control-lg" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg">Submit Penjualan</button>
+                        </fieldset>
+                    </form>
                 </div>
-            </section>
+
+                <!-- Pembelian Form -->
+                <div class="col-md-6">
+                    <h2>Form Pembelian</h2>
+                    <form action="<?php echo base_url('dashboard/submit_pembelian'); ?>" method="post">
+                        <fieldset class="border p-3">
+                            <legend class="w-auto">Detail Pembelian</legend>
+                            <div class="form-group">
+                                <label for="user">User:</label>
+                                <input type="text" name="user" class="form-control form-control-lg" placeholder="Masukkan Nama User" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="barang">Barang:</label>
+                                <input type="text" name="barang" class="form-control form-control-lg" placeholder="Masukkan Nama Barang" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="jumlah">Jumlah:</label>
+                                <input type="number" name="jumlah" class="form-control form-control-lg" placeholder="Masukkan Jumlah" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="harga">Harga:</label>
+                                <input type="number" name="harga" class="form-control form-control-lg" placeholder="Masukkan Harga" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tanggal">Tanggal:</label>
+                                <input type="date" name="tanggal" class="form-control form-control-lg" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg">Submit Pembelian</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
+    </section>
+</div>
+
 
         <!-- Footer -->
         <footer class="main-footer">
