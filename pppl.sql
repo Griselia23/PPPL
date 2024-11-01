@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Okt 2024 pada 05.45
+-- Waktu pembuatan: 01 Nov 2024 pada 09.52
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 5.6.40
 
@@ -107,7 +107,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `display_name`, `password`) VALUES
 (1, '1245', 'agus', '$2y$10$k1L6yZIlJ.E5EqFvd6TZ/.youAAM0ZfoyDtExBydp08DKdFESk4OW'),
 (2, '03921839', 'riski', '$2y$10$3BFJpqUruIr6K6zyvaWArOHW5DJLrwFOM1BUPBiRvVu5oe6mHjlf2'),
-(4, '81281', 'nurman', '$2y$10$DOmf3aHfJqyIPDYCy4TTnO2mlXPXrNGEyZM.RbFYAF9MyxLiWPOMe'),
+(4, '81281', 'nurman', '$2y$10$XqnzYqaZP9ZUprwQ8yeez.KC.yYY3si6yt/16Djx0TFCbhY6MfxqC'),
 (17, '1246', 'bagus', '$2y$10$sNdiiCPnGFTQcMUqtWsiPOvVLb5USBjPyWf3/MpBvYM8xcjhvpaR2'),
 (22, '50421260', 'nazi', '$2y$10$biNaH6zlfpzR479bNmbHD.nYLukH9CY9xp./EnRFxReX6IenBQa2.');
 
@@ -142,7 +142,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `tb_pembelian`
 --
 ALTER TABLE `tb_pembelian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_penjualan`

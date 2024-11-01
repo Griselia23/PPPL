@@ -162,143 +162,141 @@
                     </div>
                 </div>
                 <div class="box-body">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Data Penjualan</h3>
-                    
+                <div class="row">
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Data Penjualan</h3>
+            </div>
+            <div class="box-body">
+                <div class="export-buttons" style="margin-bottom: 10px;">
+                    <form method="POST" action="<?php echo base_url('laporan/export_all_penjualan'); ?>" style="display: inline;">
+                        <button type="submit" class="btn btn-success btn-sm">Export All as Excel</button>
+                    </form>
+                    <form method="POST" action="<?php echo base_url('laporan/xport_by_date_penjualan'); ?>" style="display: inline;">
+                        <input type="date" name="export_date" required class="btn btn-info btn-sm">
+                        <button type="submit" class="btn btn-info btn-sm">Export by Date</button>
+                    </form>
                 </div>
-                <div class="box-body">
-                    <div class="export-buttons" style="margin-bottom: 10px;">
-                        <form method="POST" action="<?php echo base_url('laporan/export_all_penjualan'); ?>" style="display: inline;">
-                            <button type="submit" class="btn btn-success btn-sm">Export All as Excel</button>
-                        </form>
-                        <form method="POST" action="<?php echo base_url('laporan/xport_by_date_penjualan'); ?>" style="display: inline;">
-                            <input type="date" name="export_date" required class="btn btn-info btn-sm">
-                            <button type="submit" class="btn btn-info btn-sm">Export by Date</button>
-                        </form>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th>Barang</th>
-                                    <th>Kode Barang</th>
-                                    <th>Jumlah</th>
-                                    <th>Harga</th>
-                                    <th>Total</th>
-                                    <th>Tanggal</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (!empty($penjualan_data)): ?>
-                                    <?php foreach ($penjualan_data as $item): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($item->user); ?></td>
-                                            <td><?php echo htmlspecialchars($item->barang); ?></td>
-                                            <td><?php echo htmlspecialchars($item->kode_barang); ?></td>
-                                            <td><?php echo htmlspecialchars($item->jumlah); ?></td>
-                                            <td><?php echo number_format($item->harga, 2); ?></td>
-                                            <td><?php echo number_format($item->total, 2); ?></td>
-                                            <td><?php echo date('Y-m-d', strtotime($item->tanggal)); ?></td>
-                                            <td>
-                                                <button class="btn btn-warning btn-sm"
-                                                    data-toggle="modal"
-                                                    data-target="#updateModal"
-                                                    data-id="<?php echo $item->id; ?>"
-                                                    data-user="<?php echo htmlspecialchars($item->user); ?>"
-                                                    data-barang="<?php echo htmlspecialchars($item->barang); ?>"
-                                                    data-kode="<?php echo htmlspecialchars($item->kode_barang); ?>"
-                                                    data-jumlah="<?php echo htmlspecialchars($item->jumlah); ?>"
-                                                    data-harga="<?php echo htmlspecialchars($item->harga); ?>">Update</button>
-                                                <a href="<?php echo base_url('laporan/delete_penjualan/' . $item->id); ?>"
-                                                    class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Barang</th>
+                                <th>Kode Barang</th>
+                                <th>Jumlah</th>
+                                <th>Harga</th>
+                                <th>Total</th>
+                                <th>Tanggal</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($penjualan_data)): ?>
+                                <?php foreach ($penjualan_data as $item): ?>
                                     <tr>
-                                        <td colspan="8" class="text-center">No data available</td>
+                                        <td><?php echo htmlspecialchars($item->user); ?></td>
+                                        <td><?php echo htmlspecialchars($item->barang); ?></td>
+                                        <td><?php echo htmlspecialchars($item->kode_barang); ?></td>
+                                        <td><?php echo htmlspecialchars($item->jumlah); ?></td>
+                                        <td><?php echo number_format($item->harga, 2); ?></td>
+                                        <td><?php echo number_format($item->total, 2); ?></td>
+                                        <td><?php echo date('Y-m-d', strtotime($item->tanggal)); ?></td>
+                                        <td>
+                                            <button class="btn btn-warning btn-sm"
+                                                data-toggle="modal"
+                                                data-target="#updateModal"
+                                                data-id="<?php echo $item->id; ?>"
+                                                data-user="<?php echo htmlspecialchars($item->user); ?>"
+                                                data-barang="<?php echo htmlspecialchars($item->barang); ?>"
+                                                data-kode="<?php echo htmlspecialchars($item->kode_barang); ?>"
+                                                data-jumlah="<?php echo htmlspecialchars($item->jumlah); ?>"
+                                                data-harga="<?php echo htmlspecialchars($item->harga); ?>">Update</button>
+                                            <a href="<?php echo base_url('laporan/delete_penjualan/' . $item->id); ?>"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                        </td>
                                     </tr>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="8" class="text-center">No data available</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-6">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Data Pembelian</h3>
-                    
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Data Pembelian</h3>
+            </div>
+            <div class="box-body">
+                <div class="export-buttons" style="margin-bottom: 10px;">
+                    <form method="POST" action="<?php echo base_url('laporan/export_all'); ?>" style="display: inline;">
+                        <button type="submit" class="btn btn-success btn-sm">Export All as Excel</button>
+                    </form>
+                    <form method="POST" action="<?php echo base_url('laporan/export_by_date'); ?>" style="display: inline;">
+                        <input type="date" name="export_date" required class="btn btn-info btn-sm">
+                        <button type="submit" class="btn btn-info btn-sm">Export by Date</button>
+                    </form>
                 </div>
-                <div class="box-body">
-                    <div class="export-buttons" style="margin-bottom: 10px;">
-                        <form method="POST" action="<?php echo base_url('laporan/export_all'); ?>" style="display: inline;">
-                            <button type="submit" class="btn btn-success btn-sm">Export All as Excel</button>
-                        </form>
-                        <form method="POST" action="<?php echo base_url('laporan/export_by_date'); ?>" style="display: inline;">
-                            <input type="date" name="export_date" required class="btn btn-info btn-sm">
-                            <button type="submit" class="btn btn-info btn-sm">Export by Date</button>
-                        </form>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th>Barang</th>
-                                    <th>Jumlah</th>
-                                    <th>Harga</th>
-                                    <th>Total</th>
-                                    <th>Tanggal</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (!empty($pembelian_data)): ?>
-                                    <?php foreach ($pembelian_data as $item): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($item->user); ?></td>
-                                            <td><?php echo htmlspecialchars($item->barang); ?></td>
-                                            <td><?php echo htmlspecialchars($item->jumlah); ?></td>
-                                            <td><?php echo number_format($item->harga, 2); ?></td>
-                                            <td><?php echo number_format($item->total, 2); ?></td>
-                                            <td><?php echo date('Y-m-d', strtotime($item->tanggal)); ?></td>
-                                            <td>
-                                                <button class="btn btn-warning btn-sm"
-                                                    data-toggle="modal"
-                                                    data-target="#updateModalPembelian"
-                                                    data-id="<?php echo $item->id; ?>"
-                                                    data-user="<?php echo htmlspecialchars($item->user); ?>"
-                                                    data-barang="<?php echo htmlspecialchars($item->barang); ?>"
-                                                    data-jumlah="<?php echo htmlspecialchars($item->jumlah); ?>"
-                                                    data-harga="<?php echo htmlspecialchars($item->harga); ?>">Update</button>
-                                                <a href="<?php echo base_url('laporan/delete_pembelian/' . $item->id); ?>"
-                                                    class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Barang</th>
+                                <th>Jumlah</th>
+                                <th>Harga</th>
+                                <th>Total</th>
+                                <th>Tanggal</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($pembelian_data)): ?>
+                                <?php foreach ($pembelian_data as $item): ?>
                                     <tr>
-                                        <td colspan="7" class="text-center">No data available</td>
+                                        <td><?php echo htmlspecialchars($item->user); ?></td>
+                                        <td><?php echo htmlspecialchars($item->barang); ?></td>
+                                        <td><?php echo htmlspecialchars($item->jumlah); ?></td>
+                                        <td><?php echo number_format($item->harga, 2); ?></td>
+                                        <td><?php echo number_format($item->total, 2); ?></td>
+                                        <td><?php echo date('Y-m-d', strtotime($item->tanggal)); ?></td>
+                                        <td>
+                                            <button class="btn btn-warning btn-sm"
+                                                data-toggle="modal"
+                                                data-target="#updateModalPembelian"
+                                                data-id="<?php echo $item->id; ?>"
+                                                data-user="<?php echo htmlspecialchars($item->user); ?>"
+                                                data-barang="<?php echo htmlspecialchars($item->barang); ?>"
+                                                data-jumlah="<?php echo htmlspecialchars($item->jumlah); ?>"
+                                                data-harga="<?php echo htmlspecialchars($item->harga); ?>">Update</button>
+                                            <a href="<?php echo base_url('laporan/delete_pembelian/' . $item->id); ?>"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                        </td>
                                     </tr>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="7" class="text-center">No data available</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
             </section>
         </div>
