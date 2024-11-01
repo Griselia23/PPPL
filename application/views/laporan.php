@@ -116,11 +116,11 @@
                 <div class="multinav">
                     <div class="multinav-scroll" style="height: 100%;">
                         <ul class="sidebar-menu" data-widget="tree">
-                            <li class="header">Transaksi</li>
+                            <li class="header">Transaction</li>
                             <li class="treeview">
-                                <a href="#"><i class="icon-Chart-pie"></i> <span>Form Transaksi</span><i class="fa fa-angle-right pull-right"></i></a>
+                                <a href="#"><i class="icon-Chart-pie"></i> <span>Form Transaction</span><i class="fa fa-angle-right pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="<?php echo base_url('dashboard'); ?>"><i class="icon-Commit"></i>Halaman Transaksi </a></li>
+                                    <li><a href="<?php echo base_url('dashboard'); ?>"><i class="icon-Commit"></i>Halaman Transaction </a></li>
                                     <li><a href="<?php echo base_url('laporan'); ?>"><i class="icon-Commit"></i>Halaman Laporan </a></li>
                                 </ul>
                             </li>
@@ -128,7 +128,7 @@
                             <li class="treeview">
                                 <a href="#"><i class="icon-Chat-locked"></i> <span>Authentication</span><i class="fa fa-angle-right pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="<?php echo base_url('login'); ?>"><i class="icon-Commit"></i> logout</a></li>
+                                    <li><a href="<?php echo base_url(''); ?>"><i class="icon-Commit"></i> logout</a></li>
                                     <li><a href="<?php echo base_url('setuser'); ?>"><i class="icon-Commit"></i> Tambah User</a></li>
                                 </ul>
                             </li>
@@ -145,10 +145,10 @@
         <!-- Main Content -->
         <div class="content-wrapper">
             <section class="content-header">
-                <h1>Transaksi</h1>
+                <h1>Transaction</h1>
                 <ol class="breadcrumb">
                     <li><a href="<?php echo base_url('dashboard'); ?>">Home</a></li>
-                    <li class="active">Transaksi</li>
+                    <li class="active">Transaction</li>
                 </ol>
             </section>
 

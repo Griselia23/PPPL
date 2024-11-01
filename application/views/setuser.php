@@ -218,8 +218,8 @@
                             <li class="treeview">
                                 <a href="#"><i class="icon-Chart-pie"></i> <span>Charts</span><i class="fa fa-angle-right pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="<?php echo base_url('dashboard'); ?>"><i class="icon-Commit"></i>Halaman Transaksi </a></li>
-                                    <li><a href="<?php echo base_url('laporan'); ?>"><i class="icon-Commit"></i>Halaman Laporan </a></li>
+                                    <li><a href="<?php echo base_url('dashboard'); ?>"><i class="icon-Commit"></i>Transaction Page </a></li>
+                                    <li><a href="<?php echo base_url('laporan'); ?>"><i class="icon-Commit"></i>Report Page</a></li>
                                 </ul>
                             </li>
                             <li class="header">LOGIN ADMIN</li>
@@ -227,7 +227,7 @@
                                 <a href="#"><i class="icon-Chat-locked"></i> <span>Authentication</span><i class="fa fa-angle-right pull-right"></i></a>
                                 <ul class="treeview-menu">
                                     <li><a href="<?php echo base_url('setuser'); ?>"><i class="icon-Commit"></i> setting user</a></li>
-                                    <li><a href="<?php echo base_url(''); ?>"><i class="icon-Commit"></i> logout</a></li>
+                                    <li><a href="<?php echo base_url('setuser/logout'); ?>"><i class="icon-Commit"></i> logout</a></li>
                                 </ul>
                             </li>
                         </ul>

@@ -9,8 +9,15 @@ class Setuser extends CI_Controller {
         $this->load->library('session');
         $this->load->helper('url');
     }
+    private function check_session() {
+        if (!$this->session->userdata('npk')) {
+            redirect('login'); 
+            exit(); // Ensure no further code is executed after redirect
+        }
+    }
 
     public function index() {
+        $this->check_session();
         $data['users'] = $this->Setuser_model->get_all_users();
         $this->load->view('setuser', $data);
     }
@@ -80,5 +87,9 @@ class Setuser extends CI_Controller {
             $this->session->set_flashdata('error', 'Failed to delete user. Please try again.');
         }
         redirect('setuser');
+    }
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect('login'); 
     }
 }
