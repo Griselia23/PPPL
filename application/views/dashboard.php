@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="<?php echo base_url('template/main-semidark/images/favicon.ico'); ?>">
-    <title>GYAD</title>
+    <title>Form Transaski</title>
 
     <!-- Vendors Style -->
     <link rel="stylesheet" href="<?php echo base_url('template/main-semidark/css/vendors_css.css'); ?>?v=<?php echo time(); ?>">
@@ -38,8 +38,8 @@
                 </a>
                 <a href="<?php echo base_url('dashboard'); ?>" class="logo">
                     <div class="logo-lg">
-                        <span class="light-logo"><img src="<?php echo base_url('template/images/logofix.png'); ?>" alt="logo"></span>
-                        <span class="dark-logo"><img src="<?php echo base_url('template/images/logofix.png'); ?>" alt="logo"></span>
+                        <span class="light-logo"><img src="<?php echo base_url('template/images/ppplll.png'); ?>" alt="logo"></span>
+                        <span class="dark-logo"><img src="<?php echo base_url('template/images/ppplll.png'); ?>" alt="logo"></span>
                     </div>
                 </a>
             </div>
