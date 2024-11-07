@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <title>Unit Man Hour</title>
     <link rel="icon" href="<?php echo base_url('template/main-semidark/images/favicon.ico'); ?>">
-    <title>EduAdmin - Dashboard Morris Charts</title>
 
     <!-- Vendors Style -->
     <link rel="stylesheet" href="<?php echo base_url('template/main-semidark/css/vendors_css.css'); ?>?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?php echo base_url('template/main-semidark/css/style.css'); ?>?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?php echo base_url('template/main-semidark/css/skin_color.css'); ?>?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body class="hold-transition theme-primary bg-img" style="background-image: url('<?php echo base_url('images/auth-bg/bg-1.jpg'); ?>')">

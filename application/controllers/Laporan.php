@@ -1,8 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// Load PHPExcel
-require_once APPPATH . 'libraries/PHPExcel/Classes/PHPExcel.php';
+// Load PhpSpreadsheet
+require_once FCPATH . 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Laporan extends CI_Controller {
 
@@ -70,16 +73,16 @@ class Laporan extends CI_Controller {
 
     // Generate Excel file
     private function generate_excel($data, $filename) {
-        $objPHPExcel = new PHPExcel();
-        $objPHPExcel->setActiveSheetIndex(0);
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
 
         // Set headers
-        $objPHPExcel->getActiveSheet()->setCellValue('A1', 'User');
-        $objPHPExcel->getActiveSheet()->setCellValue('B1', 'Barang');
-        $objPHPExcel->getActiveSheet()->setCellValue('C1', 'Jumlah');
-        $objPHPExcel->getActiveSheet()->setCellValue('D1', 'Harga');
-        $objPHPExcel->getActiveSheet()->setCellValue('E1', 'Total');
-        $objPHPExcel->getActiveSheet()->setCellValue('F1', 'Tanggal');
+        $sheet->setCellValue('A1', 'User');
+        $sheet->setCellValue('B1', 'Barang');
+        $sheet->setCellValue('C1', 'Jumlah');
+        $sheet->setCellValue('D1', 'Harga');
+        $sheet->setCellValue('E1', 'Total');
+        $sheet->setCellValue('F1', 'Tanggal');
 
         // Fill data
         $row = 2;
@@ -88,12 +91,12 @@ class Laporan extends CI_Controller {
             $harga = $item->harga;
             $total = $jumlah * $harga; // Calculate total
 
-            $objPHPExcel->getActiveSheet()->setCellValue('A' . $row, $item->user);
-            $objPHPExcel->getActiveSheet()->setCellValue('B' . $row, $item->barang);
-            $objPHPExcel->getActiveSheet()->setCellValue('C' . $row, $jumlah);
-            $objPHPExcel->getActiveSheet()->setCellValue('D' . $row, $harga);
-            $objPHPExcel->getActiveSheet()->setCellValue('E' . $row, $total);
-            $objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $item->tanggal);
+            $sheet->setCellValue('A' . $row, $item->user);
+            $sheet->setCellValue('B' . $row, $item->barang);
+            $sheet->setCellValue('C' . $row, $jumlah);
+            $sheet->setCellValue('D' . $row, $harga);
+            $sheet->setCellValue('E' . $row, $total);
+            $sheet->setCellValue('F' . $row, $item->tanggal);
             $row++;
         }
 
@@ -103,10 +106,11 @@ class Laporan extends CI_Controller {
         header('Cache-Control: max-age=0');
 
         // Write file to output
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-        $objWriter->save('php://output');
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
         exit();
     }
+
     public function export_all_penjualan() {
         $data = $this->Laporan_model->get_all_penjualan(); // Fetch all penjualan data
         $this->generate_excel_penjualan($data, 'All_Penjualan.xlsx');
@@ -116,33 +120,33 @@ class Laporan extends CI_Controller {
     public function export_by_date_penjualan() {
         $date = $this->input->post('export_date');
         $data = $this->Laporan_model->get_penjualan_by_date($date); // Fetch penjualan data by date
-        $this->generate_excel_penjualan($data, 'Penjualan_'.$date.'.xlsx');
+        $this->generate_excel_penjualan($data, 'Penjualan_' . $date . '.xlsx');
     }
 
     // Generate Excel for penjualan
     private function generate_excel_penjualan($data, $filename) {
-        $objPHPExcel = new PHPExcel();
-        $objPHPExcel->setActiveSheetIndex(0);
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
 
         // Set headers
-        $objPHPExcel->getActiveSheet()->setCellValue('A1', 'User');
-        $objPHPExcel->getActiveSheet()->setCellValue('B1', 'Barang');
-        $objPHPExcel->getActiveSheet()->setCellValue('C1', 'Kode Barang');
-        $objPHPExcel->getActiveSheet()->setCellValue('D1', 'Jumlah');
-        $objPHPExcel->getActiveSheet()->setCellValue('E1', 'Harga');
-        $objPHPExcel->getActiveSheet()->setCellValue('F1', 'Total');
-        $objPHPExcel->getActiveSheet()->setCellValue('G1', 'Tanggal');
+        $sheet->setCellValue('A1', 'User');
+        $sheet->setCellValue('B1', 'Barang');
+        $sheet->setCellValue('C1', 'Kode Barang');
+        $sheet->setCellValue('D1', 'Jumlah');
+        $sheet->setCellValue('E1', 'Harga');
+        $sheet->setCellValue('F1', 'Total');
+        $sheet->setCellValue('G1', 'Tanggal');
 
         // Fill data
         $row = 2;
         foreach ($data as $item) {
-            $objPHPExcel->getActiveSheet()->setCellValue('A' . $row, $item->user);
-            $objPHPExcel->getActiveSheet()->setCellValue('B' . $row, $item->barang);
-            $objPHPExcel->getActiveSheet()->setCellValue('C' . $row, $item->kode_barang);
-            $objPHPExcel->getActiveSheet()->setCellValue('D' . $row, $item->jumlah);
-            $objPHPExcel->getActiveSheet()->setCellValue('E' . $row, $item->harga);
-            $objPHPExcel->getActiveSheet()->setCellValue('F' . $row, $item->total);
-            $objPHPExcel->getActiveSheet()->setCellValue('G' . $row, $item->tanggal);
+            $sheet->setCellValue('A' . $row, $item->user);
+            $sheet->setCellValue('B' . $row, $item->barang);
+            $sheet->setCellValue('C' . $row, $item->kode_barang);
+            $sheet->setCellValue('D' . $row, $item->jumlah);
+            $sheet->setCellValue('E' . $row, $item->harga);
+            $sheet->setCellValue('F' . $row, $item->total);
+            $sheet->setCellValue('G' . $row, $item->tanggal);
             $row++;
         }
 
@@ -152,8 +156,8 @@ class Laporan extends CI_Controller {
         header('Cache-Control: max-age=0');
 
         // Write file to output
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-        $objWriter->save('php://output');
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
         exit();
     }
 }

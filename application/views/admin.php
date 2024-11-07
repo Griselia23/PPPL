@@ -308,22 +308,7 @@
     <script src="<?php echo base_url('template/assets/icons/feather-icons/feather.min.js'); ?>?v=<?php echo time(); ?>"></script>
     <script src="<?php echo base_url('template/assets/vendor_components/raphael/raphael.min.js'); ?>?v=<?php echo time(); ?>"></script>
     <script src="<?php echo base_url('template/main-semidark/js/template.js'); ?>?v=<?php echo time(); ?>"></script>
-    <script>
-        function updateWorkingDays() {
-            const monthSelect = document.getElementById('monthSelect');
-            const workingDaysSpan = document.getElementById('workingDays');
 
-            // Get the selected month value
-            const selectedOption = monthSelect.options[monthSelect.selectedIndex];
-            const monthText = selectedOption.text; // e.g., "Januari  "
-
-            // Extract the working days from the selected option text
-            const workingDays = monthText.match(/-\s*(\d+)\s*HK/)[1];
-
-            // Update the working days span
-            workingDaysSpan.textContent = workingDays;
-        }
-    </script>
 </body>
 
 </html>

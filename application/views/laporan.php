@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="<?php echo base_url('template/main-semidark/images/favicon.ico'); ?>">
     <title>Halaman Laporan</title>
+    <link rel="icon" href="<?php echo base_url('template/main-semidark/images/favicon.ico'); ?>">
 
     <!-- Vendors Style -->
     <link rel="stylesheet" href="<?php echo base_url('template/main-semidark/css/vendors_css.css'); ?>?v=<?php echo time(); ?>">

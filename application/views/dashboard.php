@@ -8,16 +8,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="<?php echo base_url('template/main-semidark/images/favicon.ico'); ?>">
-    <title>Form Transaski</title>
+    <title>Halaman Laporan</title>
 
     <!-- Vendors Style -->
     <link rel="stylesheet" href="<?php echo base_url('template/main-semidark/css/vendors_css.css'); ?>?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?php echo base_url('template/main-semidark/css/style.css'); ?>?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?php echo base_url('template/main-semidark/css/skin_color.css'); ?>?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <style>
-        /* Adjust logo size */
+        /* Custom styles */
+        .table {
+            margin-bottom: 0;
+            /* Remove bottom margin */
+        }
+
         .logo img {
             max-width: 85px;
             height: auto;
@@ -122,7 +128,7 @@
                             <li class="treeview">
                                 <a href="#"><i class="icon-Chat-locked"></i> <span>Authentication</span><i class="fa fa-angle-right pull-right"></i></a>
                                 <ul class="treeview-menu">
-                                <li><a href="<?php echo base_url('dashboard/logout'); ?>"><i class="icon-Commit"></i> logout</a></li>
+                                    <li><a href="<?php echo base_url(''); ?>"><i class="icon-Commit"></i> logout</a></li>
                                     <li><a href="<?php echo base_url('setuser'); ?>"><i class="icon-Commit"></i> Tambah User</a></li>
                                 </ul>
                             </li>
@@ -136,83 +142,80 @@
                 <a href="#" class="link" title="Logout"><span class="icon-Lock-overturning"></span></a>
             </div>
         </aside>
-
         <!-- Main Content -->
         <div class="content-wrapper">
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Penjualan Form -->
-                <div class="col-md-6">
-                    <h2>Form Penjualan</h2>
-                    <form action="<?php echo base_url('dashboard/submit_penjualan'); ?>" method="post">
-                        <fieldset class="border p-3">
-                            <legend class="w-auto">Detail Penjualan</legend>
-                            <div class="form-group">
-                                <label for="user">User:</label>
-                                <input type="text" name="user" class="form-control form-control-lg" placeholder="Masukkan Nama User" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="kode_barang">Kode Barang:</label>
-                                <input type="text" name="kode_barang" class="form-control form-control-lg" placeholder="Masukkan Kode Barang" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="barang">Barang:</label>
-                                <input type="text" name="barang" class="form-control form-control-lg" placeholder="Masukkan Nama Barang" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="jumlah">Jumlah:</label>
-                                <input type="number" name="jumlah" class="form-control form-control-lg" placeholder="Masukkan Jumlah" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="harga">Harga:</label>
-                                <input type="number" name="harga" class="form-control form-control-lg" placeholder="Masukkan Harga" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="tanggal">Tanggal:</label>
-                                <input type="date" name="tanggal" class="form-control form-control-lg" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg">Submit Penjualan</button>
-                        </fieldset>
-                    </form>
-                </div>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Penjualan Form -->
+                        <div class="col-md-6">
+                            <h2>Form Penjualan</h2>
+                            <form action="<?php echo base_url('dashboard/submit_penjualan'); ?>" method="post" id="penjualanForm">
+                                <fieldset class="border p-3">
+                                    <legend class="w-auto">Detail Penjualan</legend>
+                                    <div class="form-group">
+                                        <label for="user">User:</label>
+                                        <input type="text" name="user" class="form-control form-control-lg" placeholder="Masukkan Nama User" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="kode_barang">Kode Barang:</label>
+                                        <input type="text" name="kode_barang" class="form-control form-control-lg" placeholder="Masukkan Kode Barang" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="barang">Barang:</label>
+                                        <input type="text" name="barang" class="form-control form-control-lg" placeholder="Masukkan Nama Barang" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jumlah">Jumlah:</label>
+                                        <input type="number" name="jumlah" class="form-control form-control-lg" placeholder="Masukkan Jumlah" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="harga">Harga:</label>
+                                        <input type="number" name="harga" class="form-control form-control-lg" placeholder="Masukkan Harga" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tanggal">Tanggal:</label>
+                                        <input type="date" name="tanggal" class="form-control form-control-lg" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-lg">Submit Penjualan</button>
+                                </fieldset>
+                            </form>
+                        </div>
 
-                <!-- Pembelian Form -->
-                <div class="col-md-6">
-                    <h2>Form Pembelian</h2>
-                    <form action="<?php echo base_url('dashboard/submit_pembelian'); ?>" method="post">
-                        <fieldset class="border p-3">
-                            <legend class="w-auto">Detail Pembelian</legend>
-                            <div class="form-group">
-                                <label for="user">User:</label>
-                                <input type="text" name="user" class="form-control form-control-lg" placeholder="Masukkan Nama User" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="barang">Barang:</label>
-                                <input type="text" name="barang" class="form-control form-control-lg" placeholder="Masukkan Nama Barang" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="jumlah">Jumlah:</label>
-                                <input type="number" name="jumlah" class="form-control form-control-lg" placeholder="Masukkan Jumlah" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="harga">Harga:</label>
-                                <input type="number" name="harga" class="form-control form-control-lg" placeholder="Masukkan Harga" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="tanggal">Tanggal:</label>
-                                <input type="date" name="tanggal" class="form-control form-control-lg" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg">Submit Pembelian</button>
-                        </fieldset>
-                    </form>
+                        <!-- Pembelian Form -->
+                        <div class="col-md-6">
+                            <h2>Form Pembelian</h2>
+                            <form action="<?php echo base_url('dashboard/submit_pembelian'); ?>" method="post" id="pembelianForm">
+                                <fieldset class="border p-3">
+                                    <legend class="w-auto">Detail Pembelian</legend>
+                                    <div class="form-group">
+                                        <label for="user">User:</label>
+                                        <input type="text" name="user" class="form-control form-control-lg" placeholder="Masukkan Nama User" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="barang">Barang:</label>
+                                        <input type="text" name="barang" class="form-control form-control-lg" placeholder="Masukkan Nama Barang" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jumlah">Jumlah:</label>
+                                        <input type="number" name="jumlah" class="form-control form-control-lg" placeholder="Masukkan Jumlah" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="harga">Harga:</label>
+                                        <input type="number" name="harga" class="form-control form-control-lg" placeholder="Masukkan Harga" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tanggal">Tanggal:</label>
+                                        <input type="date" name="tanggal" class="form-control form-control-lg" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-lg">Submit Pembelian</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
-</div>
-
-
         <!-- Footer -->
         <footer class="main-footer">
             &copy; 2021 <a href="https://www.multipurposethemes.com/">Multipurpose Themes</a>. All Rights Reserved.
@@ -225,15 +228,23 @@
     <script src="<?php echo base_url('template/assets/vendor_components/raphael/raphael.min.js'); ?>?v=<?php echo time(); ?>"></script>
     <script src="<?php echo base_url('template/main-semidark/js/template.js'); ?>?v=<?php echo time(); ?>"></script>
     <script src="<?php echo base_url('template/main-semidark/js/highcharts.js'); ?>?v=<?php echo time(); ?>"></script>
-
-    <!-- Include SweetAlert JS -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
-    <?php if ($this->session->flashdata('success')): ?>
-        <script>
-            swal("Good job!", "<?php echo $this->session->flashdata('success'); ?>", "success");
-        </script>
-    <?php endif; ?>
+    <script>
+        <?php if ($this->session->flashdata('success')): ?>
+            swal({
+                title: "Success!",
+                text: "<?php echo $this->session->flashdata('success'); ?>",
+                type: "success",
+                timer: 2000,
+                showConfirmButton: false
+            });
+        <?php endif; ?>
+    </script>
 </body>
 
 </html>
