@@ -58,7 +58,7 @@ class Setuser extends CI_Controller {
         $display_name = $this->input->post('display_name');
         $password = $this->input->post('password');
     
-        // Check if username and display name are the same
+        
         if ($username === $display_name) {
             $this->session->set_flashdata('error', 'Username (NPK) and Display Name cannot be the same!');
             redirect('setuser/edit/' . $id);

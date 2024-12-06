@@ -1,6 +1,12 @@
+# Allow access to all files in the assets folder (CSS, JS, images, etc.)
 <IfModule authz_core_module>
-    Require all denied
+    <FilesMatch "\.(css|js|jpg|jpeg|png|gif|woff|woff2|ttf|eot|svg)$">
+        Require all granted
+    </FilesMatch>
 </IfModule>
+
 <IfModule !authz_core_module>
-    Deny from all
+    <FilesMatch "\.(css|js|jpg|jpeg|png|gif|woff|woff2|ttf|eot|svg)$">
+        Allow from all
+    </FilesMatch>
 </IfModule>

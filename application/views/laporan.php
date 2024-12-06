@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="<?php echo base_url('template/main-semidark/css/skin_color.css'); ?>?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="<?php echo base_url('application/template/assets/vendor_components/datatable/datatables.css'); ?>">
     <style>
         /* Custom styles */
         .table {
@@ -144,162 +144,167 @@
         </aside>
         <!-- Main Content -->
         <div class="content-wrapper">
-            <section class="content-header">
-                <h1>Transaction</h1>
-                <ol class="breadcrumb">
-                    <li><a href="<?php echo base_url('dashboard'); ?>">Home</a></li>
-                    <li class="active">Transaction</li>
-                </ol>
-            </section>
+    <section class="content-header">
+        <h1>Transaction</h1>
+        <ol class="breadcrumb">
+            <li><a href="<?php echo base_url('dashboard'); ?>">Home</a></li>
+            <li class="active">Transaction</li>
+        </ol>
+    </section>
 
-            <section class="content">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Sales and Purchase Overview</h3>
-                    </div>
-                    <div class="box-body">
-                        <div id="chart1" style="height: 400px; min-width: 310px"></div>
-                    </div>
-                </div>
-                <div class="box-body">
-                <div class="row">
-    <div class="col-md-6">
+    <section class="content">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Data Penjualan</h3>
+                <h3 class="box-title">Sales and Purchase Overview</h3>
             </div>
             <div class="box-body">
-                <div class="export-buttons" style="margin-bottom: 10px;">
-                    <form method="POST" action="<?php echo base_url('laporan/export_all_penjualan'); ?>" style="display: inline;">
-                        <button type="submit" class="btn btn-success btn-sm">Export All as Excel</button>
-                    </form>
-                    <form method="POST" action="<?php echo base_url('laporan/xport_by_date_penjualan'); ?>" style="display: inline;">
-                        <input type="date" name="export_date" required class="btn btn-info btn-sm">
-                        <button type="submit" class="btn btn-info btn-sm">Export by Date</button>
-                    </form>
+                <div id="chart1" style="height: 400px; min-width: 310px"></div>
+            </div>
+        </div>
+
+        <div class="box-body">
+            <div class="row">
+                <!-- Data Penjualan Table -->
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Data Penjualan</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="export-buttons" style="margin-bottom: 10px;">
+                                <form method="POST" action="<?php echo base_url('laporan/export_all_penjualan'); ?>" style="display: inline;">
+                                    <button type="submit" class="btn btn-success btn-sm">Export All as Excel</button>
+                                </form>
+                                <form method="POST" action="<?php echo base_url('laporan/xport_by_date_penjualan'); ?>" style="display: inline;">
+                                    <input type="date" name="export_date" required class="btn btn-info btn-sm">
+                                    <button type="submit" class="btn btn-info btn-sm">Export by Date</button>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="penjualanTable" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>User</th>
+                                            <th>Barang</th>
+                                            <th>Kode Barang</th>
+                                            <th>Jumlah</th>
+                                            <th>Harga</th>
+                                            <th>Total</th>
+                                            <th>Tanggal</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($penjualan_data)): ?>
+                                            <?php foreach ($penjualan_data as $item): ?>
+                                                <tr>
+                                                    <td><?php echo htmlspecialchars($item->user); ?></td>
+                                                    <td><?php echo htmlspecialchars($item->barang); ?></td>
+                                                    <td><?php echo htmlspecialchars($item->kode_barang); ?></td>
+                                                    <td><?php echo htmlspecialchars($item->jumlah); ?></td>
+                                                    <td><?php echo number_format($item->harga, 2); ?></td>
+                                                    <td><?php echo number_format($item->total, 2); ?></td>
+                                                    <td><?php echo date('Y-m-d', strtotime($item->tanggal)); ?></td>
+                                                    <td>
+                                                        <button class="btn btn-warning btn-sm"
+                                                            data-toggle="modal"
+                                                            data-target="#updateModal"
+                                                            data-id="<?php echo $item->id; ?>"
+                                                            data-user="<?php echo htmlspecialchars($item->user); ?>"
+                                                            data-barang="<?php echo htmlspecialchars($item->barang); ?>"
+                                                            data-kode="<?php echo htmlspecialchars($item->kode_barang); ?>"
+                                                            data-jumlah="<?php echo htmlspecialchars($item->jumlah); ?>"
+                                                            data-harga="<?php echo htmlspecialchars($item->harga); ?>">Update</button>
+                                                        <a href="<?php echo base_url('laporan/delete_penjualan/' . $item->id); ?>"
+                                                            class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="8" class="text-center">No data available</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>User</th>
-                                <th>Barang</th>
-                                <th>Kode Barang</th>
-                                <th>Jumlah</th>
-                                <th>Harga</th>
-                                <th>Total</th>
-                                <th>Tanggal</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (!empty($penjualan_data)): ?>
-                                <?php foreach ($penjualan_data as $item): ?>
-                                    <tr>
-                                        <td><?php echo htmlspecialchars($item->user); ?></td>
-                                        <td><?php echo htmlspecialchars($item->barang); ?></td>
-                                        <td><?php echo htmlspecialchars($item->kode_barang); ?></td>
-                                        <td><?php echo htmlspecialchars($item->jumlah); ?></td>
-                                        <td><?php echo number_format($item->harga, 2); ?></td>
-                                        <td><?php echo number_format($item->total, 2); ?></td>
-                                        <td><?php echo date('Y-m-d', strtotime($item->tanggal)); ?></td>
-                                        <td>
-                                            <button class="btn btn-warning btn-sm"
-                                                data-toggle="modal"
-                                                data-target="#updateModal"
-                                                data-id="<?php echo $item->id; ?>"
-                                                data-user="<?php echo htmlspecialchars($item->user); ?>"
-                                                data-barang="<?php echo htmlspecialchars($item->barang); ?>"
-                                                data-kode="<?php echo htmlspecialchars($item->kode_barang); ?>"
-                                                data-jumlah="<?php echo htmlspecialchars($item->jumlah); ?>"
-                                                data-harga="<?php echo htmlspecialchars($item->harga); ?>">Update</button>
-                                            <a href="<?php echo base_url('laporan/delete_penjualan/' . $item->id); ?>"
-                                                class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="8" class="text-center">No data available</td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+
+                <!-- Data Pembelian Table -->
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Data Pembelian</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="export-buttons" style="margin-bottom: 10px;">
+                                <form method="POST" action="<?php echo base_url('laporan/export_all'); ?>" style="display: inline;">
+                                    <button type="submit" class="btn btn-success btn-sm">Export All as Excel</button>
+                                </form>
+                                <form method="POST" action="<?php echo base_url('laporan/export_by_date'); ?>" style="display: inline;">
+                                    <input type="date" name="export_date" required class="btn btn-info btn-sm">
+                                    <button type="submit" class="btn btn-info btn-sm">Export by Date</button>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="pembelianTable" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>User</th>
+                                            <th>Barang</th>
+                                            <th>Jumlah</th>
+                                            <th>Harga</th>
+                                            <th>Total</th>
+                                            <th>Tanggal</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($pembelian_data)): ?>
+                                            <?php foreach ($pembelian_data as $item): ?>
+                                                <tr>
+                                                    <td><?php echo htmlspecialchars($item->user); ?></td>
+                                                    <td><?php echo htmlspecialchars($item->barang); ?></td>
+                                                    <td><?php echo htmlspecialchars($item->jumlah); ?></td>
+                                                    <td><?php echo number_format($item->harga, 2); ?></td>
+                                                    <td><?php echo number_format($item->total, 2); ?></td>
+                                                    <td><?php echo date('Y-m-d', strtotime($item->tanggal)); ?></td>
+                                                    <td>
+                                                        <button class="btn btn-warning btn-sm"
+                                                            data-toggle="modal"
+                                                            data-target="#updateModalPembelian"
+                                                            data-id="<?php echo $item->id; ?>"
+                                                            data-user="<?php echo htmlspecialchars($item->user); ?>"
+                                                            data-barang="<?php echo htmlspecialchars($item->barang); ?>"
+                                                            data-jumlah="<?php echo htmlspecialchars($item->jumlah); ?>"
+                                                            data-harga="<?php echo htmlspecialchars($item->harga); ?>">Update</button>
+                                                        <a href="<?php echo base_url('laporan/delete_pembelian/' . $item->id); ?>"
+                                                            class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="7" class="text-center">No data available</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Data Pembelian</h3>
-            </div>
-            <div class="box-body">
-                <div class="export-buttons" style="margin-bottom: 10px;">
-                    <form method="POST" action="<?php echo base_url('laporan/export_all'); ?>" style="display: inline;">
-                        <button type="submit" class="btn btn-success btn-sm">Export All as Excel</button>
-                    </form>
-                    <form method="POST" action="<?php echo base_url('laporan/export_by_date'); ?>" style="display: inline;">
-                        <input type="date" name="export_date" required class="btn btn-info btn-sm">
-                        <button type="submit" class="btn btn-info btn-sm">Export by Date</button>
-                    </form>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>User</th>
-                                <th>Barang</th>
-                                <th>Jumlah</th>
-                                <th>Harga</th>
-                                <th>Total</th>
-                                <th>Tanggal</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (!empty($pembelian_data)): ?>
-                                <?php foreach ($pembelian_data as $item): ?>
-                                    <tr>
-                                        <td><?php echo htmlspecialchars($item->user); ?></td>
-                                        <td><?php echo htmlspecialchars($item->barang); ?></td>
-                                        <td><?php echo htmlspecialchars($item->jumlah); ?></td>
-                                        <td><?php echo number_format($item->harga, 2); ?></td>
-                                        <td><?php echo number_format($item->total, 2); ?></td>
-                                        <td><?php echo date('Y-m-d', strtotime($item->tanggal)); ?></td>
-                                        <td>
-                                            <button class="btn btn-warning btn-sm"
-                                                data-toggle="modal"
-                                                data-target="#updateModalPembelian"
-                                                data-id="<?php echo $item->id; ?>"
-                                                data-user="<?php echo htmlspecialchars($item->user); ?>"
-                                                data-barang="<?php echo htmlspecialchars($item->barang); ?>"
-                                                data-jumlah="<?php echo htmlspecialchars($item->jumlah); ?>"
-                                                data-harga="<?php echo htmlspecialchars($item->harga); ?>">Update</button>
-                                            <a href="<?php echo base_url('laporan/delete_pembelian/' . $item->id); ?>"
-                                                class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="7" class="text-center">No data available</td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 </div>
 
 
-            </section>
-        </div>
+
 
         <!-- Modal for Update Penjualan -->
         <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
@@ -440,8 +445,9 @@
     <script src="<?php echo base_url('template/assets/vendor_components/raphael/raphael.min.js'); ?>?v=<?php echo time(); ?>"></script>
     <script src="<?php echo base_url('template/main-semidark/js/template.js'); ?>?v=<?php echo time(); ?>"></script>
     <script src="<?php echo base_url('template/main-semidark/js/highcharts.js'); ?>?v=<?php echo time(); ?>"></script>
+    <script src="<?php echo base_url('template/main-semidark/js/drilldown.js'); ?>?v=<?php echo time(); ?>"></script>
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
@@ -496,76 +502,322 @@
     </script>
 
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const totals = <?php echo json_encode($totals); ?>; // Pass the totals to JavaScript
-        const penjualanData = <?php echo json_encode($penjualan_data); ?>; // Pass penjualan data
-
-        // Prepare categories and series data
-        const categories = penjualanData.map(item => item.tanggal);
-        const totalPenjualan = penjualanData.map(item => parseFloat(item.total)); // Total penjualan
-        const totalPembelian = totals.total_pembelian || 0; // Total pembelian
-        const pembelianData = new Array(categories.length).fill(totalPembelian); // Fill pembelian data
-
-        // Target value
-        const targetValue = 1000000; // Set your target value
-
+    <script>
         Highcharts.chart('chart1', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Sales Overview by Date',
-                align: 'left'
-            },
-            xAxis: {
-                categories: categories
-            },
-            yAxis: {
-                allowDecimals: false,
-                min: 0,
-                title: {
-                    text: 'Amount (Rp)'
-                }
-            },
-            tooltip: {
-                shared: true,
-                useHTML: true,
-                headerFormat: '<b>{point.key}</b><br/>',
-                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-            },
-            plotOptions: {
-                column: {
-                    stacking: 'normal'
-                }
-            },
-            series: [{
-                name: 'Total Penjualan',
-                data: totalPenjualan,
-                stack: 'sales',
-                color: '#7cb5ec' // Blue color
-            }, //{
-            //     name: 'Total Pembelian',
-            //     data: pembelianData,
-            //     stack: 'sales',
-            //     color: '#434348' // Purple color
-            // }, 
-            {
-                name: 'Target',
-                type: 'line',
-                data: new Array(categories.length).fill(targetValue), // Fill target array
-                color: '#ff0000', // Red color for the target line
-                dashStyle: 'ShortDash',
-                tooltip: {
-                    valueSuffix: ' Rp'
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Browser market shares. January, 2022'
+    },
+    subtitle: {
+        text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+    },
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        }
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: 'Total percent market share'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.1f}%'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
+            '<b>{point.y:.2f}%</b> of total<br/>'
+    },
+
+    series: [
+        {
+            name: 'Browsers',
+            colorByPoint: true,
+            data: [
+                {
+                    name: 'Chrome',
+                    y: 63.06,
+                    drilldown: 'Chrome'
                 },
-                marker: {
-                    enabled: false
+                {
+                    name: 'Safari',
+                    y: 19.84,
+                    drilldown: 'Safari'
+                },
+                {
+                    name: 'Firefox',
+                    y: 4.18,
+                    drilldown: 'Firefox'
+                },
+                {
+                    name: 'Edge',
+                    y: 4.12,
+                    drilldown: 'Edge'
+                },
+                {
+                    name: 'Opera',
+                    y: 2.33,
+                    drilldown: 'Opera'
+                },
+                {
+                    name: 'Internet Explorer',
+                    y: 0.45,
+                    drilldown: 'Internet Explorer'
+                },
+                {
+                    name: 'Other',
+                    y: 1.582,
+                    drilldown: null
                 }
-            }]
-        });
-    });
+            ]
+        }
+    ],
+    drilldown: {
+        breadcrumbs: {
+            position: {
+                align: 'right'
+            }
+        },
+        series: [
+            {
+                name: 'Chrome',
+                id: 'Chrome',
+                data: [
+                    [
+                        'v65.0',
+                        0.1
+                    ],
+                    [
+                        'v64.0',
+                        1.3
+                    ],
+                    [
+                        'v63.0',
+                        53.02
+                    ],
+                    [
+                        'v62.0',
+                        1.4
+                    ],
+                    [
+                        'v61.0',
+                        0.88
+                    ],
+                    [
+                        'v60.0',
+                        0.56
+                    ],
+                    [
+                        'v59.0',
+                        0.45
+                    ],
+                    [
+                        'v58.0',
+                        0.49
+                    ],
+                    [
+                        'v57.0',
+                        0.32
+                    ],
+                    [
+                        'v56.0',
+                        0.29
+                    ],
+                    [
+                        'v55.0',
+                        0.79
+                    ],
+                    [
+                        'v54.0',
+                        0.18
+                    ],
+                    [
+                        'v51.0',
+                        0.13
+                    ],
+                    [
+                        'v49.0',
+                        2.16
+                    ],
+                    [
+                        'v48.0',
+                        0.13
+                    ],
+                    [
+                        'v47.0',
+                        0.11
+                    ],
+                    [
+                        'v43.0',
+                        0.17
+                    ],
+                    [
+                        'v29.0',
+                        0.26
+                    ]
+                ]
+            },
+            {
+                name: 'Firefox',
+                id: 'Firefox',
+                data: [
+                    [
+                        'v58.0',
+                        1.02
+                    ],
+                    [
+                        'v57.0',
+                        7.36
+                    ],
+                    [
+                        'v56.0',
+                        0.35
+                    ],
+                    [
+                        'v55.0',
+                        0.11
+                    ],
+                    [
+                        'v54.0',
+                        0.1
+                    ],
+                    [
+                        'v52.0',
+                        0.95
+                    ],
+                    [
+                        'v51.0',
+                        0.15
+                    ],
+                    [
+                        'v50.0',
+                        0.1
+                    ],
+                    [
+                        'v48.0',
+                        0.31
+                    ],
+                    [
+                        'v47.0',
+                        0.12
+                    ]
+                ]
+            },
+            {
+                name: 'Internet Explorer',
+                id: 'Internet Explorer',
+                data: [
+                    [
+                        'v11.0',
+                        6.2
+                    ],
+                    [
+                        'v10.0',
+                        0.29
+                    ],
+                    [
+                        'v9.0',
+                        0.27
+                    ],
+                    [
+                        'v8.0',
+                        0.47
+                    ]
+                ]
+            },
+            {
+                name: 'Safari',
+                id: 'Safari',
+                data: [
+                    [
+                        'v11.0',
+                        3.39
+                    ],
+                    [
+                        'v10.1',
+                        0.96
+                    ],
+                    [
+                        'v10.0',
+                        0.36
+                    ],
+                    [
+                        'v9.1',
+                        0.54
+                    ],
+                    [
+                        'v9.0',
+                        0.13
+                    ],
+                    [
+                        'v5.1',
+                        0.2
+                    ]
+                ]
+            },
+            {
+                name: 'Edge',
+                id: 'Edge',
+                data: [
+                    [
+                        'v16',
+                        2.6
+                    ],
+                    [
+                        'v15',
+                        0.92
+                    ],
+                    [
+                        'v14',
+                        0.4
+                    ],
+                    [
+                        'v13',
+                        0.1
+                    ]
+                ]
+            },
+            {
+                name: 'Opera',
+                id: 'Opera',
+                data: [
+                    [
+                        'v50.0',
+                        0.96
+                    ],
+                    [
+                        'v49.0',
+                        0.82
+                    ],
+                    [
+                        'v12.1',
+                        0.14
+                    ]
+                ]
+            }
+        ]
+    }
+});
+
 </script>
+
 
 
 </body>
